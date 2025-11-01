@@ -1,0 +1,12 @@
+{
+  "frame": {
+    "version": "next",
+    "name": "Cast Analyzer",
+    "iconUrl": "https://scac-v3tm.vercel.app//icon.png",
+    "homeUrl": "https://scac-v3tm.vercel.app/",
+    "imageUrl": "https://scac-v3tm.vercel.app/og.png",
+    "buttonTitle": "Open Cast Analyzer",
+    "splashImageUrl": "https://scac-v3tm.vercel.app/splash.png",
+    "splashBackgroundColor": "#667eea"
+  }
+}
