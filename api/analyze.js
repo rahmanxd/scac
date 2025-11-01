@@ -86,7 +86,7 @@ export default async function handler(req, res) {
     if (!castHash) {
       return res.status(400).json({ 
         error: 'Cast hash is required',
-        message: 'Pastikan Mini App dijalankan dari reply cast.' 
+        message: 'This Mini App must be run from a cast reply.' 
       });
     }
 
@@ -98,7 +98,7 @@ export default async function handler(req, res) {
     if (!cast) {
       return res.status(404).json({ 
         error: 'Cast not found',
-        message: 'Cast tidak ditemukan atau sudah dihapus.'
+        message: 'Cast not found or has been deleted.'
       });
     }
 
@@ -176,7 +176,7 @@ export default async function handler(req, res) {
     // Return user-friendly error
     return res.status(500).json({
       error: 'Analysis failed',
-      message: error.message || 'Gagal menganalisis cast. Silakan coba lagi.',
+      message: error.message || 'Failed to analyze cast. Please try again.',
     });
   }
 }

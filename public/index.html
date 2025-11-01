@@ -260,29 +260,29 @@
     <div class="container">
         <div class="header">
             <h1>📊 Cast Analyzer</h1>
-            <p>Analisis popularitas cast di Farcaster</p>
+            <p>Farcaster Cast Popularity Analysis</p>
         </div>
 
         <div class="card">
             <div class="instructions">
-                <h3>💡 Cara Menggunakan</h3>
+                <h3>💡 How to Use</h3>
                 <ol>
-                    <li>Temukan cast menarik di Farcaster</li>
-                    <li>Reply cast tersebut dengan URL Mini App ini</li>
-                    <li>Klik tombol "Analisis Cast" yang muncul</li>
-                    <li>Lihat statistik lengkapnya!</li>
+                    <li>Find an interesting cast on Farcaster</li>
+                    <li>Reply to the cast with the URL of this Mini App</li>
+                    <li>Click the "Analyze Cast" button that appears</li>
+                    <li>See the full stats!</li>
                 </ol>
             </div>
 
             <button class="button" id="analyzeBtn" onclick="analyzeCast()">
                 <span>🔍</span>
-                <span>Analisis Cast Ini</span>
+                <span>Analyze Cast</span>
             </button>
         </div>
 
         <div class="results" id="results">
             <div class="card">
-                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Hasil Analisis</h2>
+                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Analysis Results</h2>
                 
                 <div class="cast-info" id="castInfo"></div>
                 
@@ -313,7 +313,7 @@
 
             } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Gagal memuat aplikasi. Pastikan dibuka dari Farcaster.');
+                showError('Failed to load app. Make sure to open it from Farcaster.');
             }
         }
 
@@ -322,14 +322,14 @@
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
+            btn.innerHTML = '<div class="loading"></div><span>Analyzing...</span>';
 
             try {
                 // Get cast hash from context
                 const castHash = context?.cast?.hash;
                 
                 if (!castHash) {
-                    throw new Error('Cast hash tidak ditemukan. Pastikan Mini App dijalankan dari reply cast.');
+                    throw new Error('Cast hash not found. Make sure the Mini App is run from the reply to the cast.');
                 }
 
                 console.log('Analyzing cast:', castHash);
@@ -355,7 +355,7 @@
 
             } catch (error) {
                 console.error('Analysis error:', error);
-                showError(error.message || 'Gagal menganalisis cast. Silakan coba lagi.');
+                showError(error.message || 'Failed to analyze cast. Please try again.');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalHTML;
@@ -374,7 +374,7 @@
                     </div>
                 </div>
                 <div class="cast-text">
-                    ${data.cast.text || '<em>Cast tanpa teks</em>'}
+                    ${data.cast.text || '<em>Cast without text.</em>'}
                 </div>
             `;
             document.getElementById('castInfo').innerHTML = castInfoHTML;
