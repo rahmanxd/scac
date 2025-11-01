@@ -4,14 +4,13 @@
     "payload": "eyJkb21haW4iOiJzY2FjLXYzdG0udmVyY2VsLmFwcCJ9",
     "signature": "zQUFuQnm7MSrrQPtDAVu/ZXSF8LNCuJLOPkIcA/stRkXNKJAo3qWrE9jP/7iLfwq2EXONP5Qkm+4Z4fm9lapthw="
   },
-  "frame": {
-    "version": "next",
+  "miniapp": {
+    "version": "1",
     "name": "Cast Analyzer",
-    "iconUrl": "https://scac-v3tm.vercel.app//icon.png",
     "homeUrl": "https://scac-v3tm.vercel.app/",
-    "imageUrl": "https://scac-v3tm.vercel.app/og.png",
-    "buttonTitle": "Open Cast Analyzer",
-    "splashImageUrl": "https://scac-v3tm.vercel.app/splash.png",
-    "splashBackgroundColor": "#667eea"
+    "splashBackgroundColor": "#667eea",
+    
+    "iconUrl": "https://scac-v3tm.vercel.app/api/og-image",
+    "splashImageUrl": "https://scac-v3tm.vercel.app/api/og-image"
   }
 }
