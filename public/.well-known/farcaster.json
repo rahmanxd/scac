@@ -7,11 +7,11 @@
   "frame": {
     "version": "next",
     "name": "Cast Analyzer",
-    "iconUrl": "https://scac-v3tm.vercel.app/icon.png",
+    "iconUrl": "https://scac-v3tm.vercel.app/api/icon",
     "homeUrl": "https://scac-v3tm.vercel.app",
-    "imageUrl": "https://scac-v3tm.vercel.app/og-image.png",
+    "imageUrl": "https://scac-v3tm.vercel.app/api/og-image",
     "buttonTitle": "Analisis Cast",
-    "splashImageUrl": "https://scac-v3tm.vercel.app/splash.png",
+    "splashImageUrl": "https://scac-v3tm.vercel.app/api/splash",
     "splashBackgroundColor": "#667eea"
   }
 }
