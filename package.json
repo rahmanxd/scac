@@ -1,7 +1,7 @@
 {
-  "name": "cermin-sosial-miniapp",
-  "version": "2.0.0",
-  "description": "Farcaster Mini App - Social Connection Explorer",
+  "name": "cast-analyzer",
+  "version": "1.0.0",
+  "description": "Farcaster Mini App - Cast Analyzer",
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
@@ -10,9 +10,9 @@
   "keywords": [
     "farcaster",
     "miniapp",
-    "frames-v2",
-    "vercel",
-    "social"
+    "cast",
+    "analyzer",
+    "vercel"
   ],
   "author": "",
   "license": "MIT",

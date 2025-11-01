@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🪞 Cermin Sosial</title>
+    <title>📊 Cast Analyzer</title>
     <style>
         * {
             margin: 0;
@@ -54,33 +54,28 @@
             animation: slideUp 0.5s ease-out;
         }
 
-        .user-info {
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .instructions h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
         }
 
-        .avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
         }
 
-        .user-details h2 {
-            font-size: 1.3em;
-            margin-bottom: 5px;
-        }
-
-        .user-details p {
-            opacity: 0.8;
-            font-size: 0.9em;
+        .instructions li {
+            margin: 10px 0;
         }
 
         .button {
@@ -134,74 +129,115 @@
             display: block;
         }
 
-        .connection-item {
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
+            padding: 20px;
             border-radius: 12px;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            text-align: center;
         }
 
-        .connection-icon {
-            font-size: 24px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-
-        .connection-text {
-            flex: 1;
-        }
-
-        .connection-text h3 {
-            font-size: 1em;
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
             margin-bottom: 5px;
         }
 
-        .connection-text p {
-            font-size: 0.85em;
+        .stat-label {
+            font-size: 0.9em;
             opacity: 0.8;
         }
 
-        .user-list {
+        .cast-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .cast-author {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .user-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            opacity: 0.8;
-        }
-
-        .empty-state-icon {
-            font-size: 60px;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 15px;
         }
 
+        .cast-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cast-text {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .likers-section {
+            margin: 20px 0;
+        }
+
+        .likers-section h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .likers-grid {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .liker-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .liker-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .liker-name {
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 3px;
+        }
+
+        .liker-username {
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .error {
+            background: rgba(255, 59, 48, 0.2);
+            border: 2px solid rgba(255, 59, 48, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideUp {
@@ -216,47 +252,43 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .error {
-            background: rgba(255, 59, 48, 0.2);
-            border: 2px solid rgba(255, 59, 48, 0.4);
-            padding: 15px;
-            border-radius: 12px;
-            margin: 15px 0;
-            text-align: center;
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🪞 Cermin Sosial</h1>
-            <p>Temukan koneksi Anda di Farcaster</p>
+            <h1>📊 Cast Analyzer</h1>
+            <p>Analisis popularitas cast di Farcaster</p>
         </div>
 
-        <div class="card" id="userCard" style="display: none;">
-            <div class="user-info">
-                <div class="avatar" id="userAvatar">👤</div>
-                <div class="user-details">
-                    <h2 id="userName">Loading...</h2>
-                    <p id="userBio">@username</p>
-                </div>
+        <div class="card">
+            <div class="instructions">
+                <h3>💡 Cara Menggunakan</h3>
+                <ol>
+                    <li>Temukan cast menarik di Farcaster</li>
+                    <li>Reply cast tersebut dengan URL Mini App ini</li>
+                    <li>Klik tombol "Analisis Cast" yang muncul</li>
+                    <li>Lihat statistik lengkapnya!</li>
+                </ol>
             </div>
-            
-            <button class="button" id="analyzeBtn" onclick="analyzeConnections()">
+
+            <button class="button" id="analyzeBtn" onclick="analyzeCast()">
                 <span>🔍</span>
-                <span>Analisis Koneksi Saya</span>
+                <span>Analisis Cast Ini</span>
             </button>
         </div>
 
         <div class="results" id="results">
             <div class="card">
-                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📊 Hasil Analisis</h2>
-                <div id="resultsContent"></div>
+                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Hasil Analisis</h2>
+                
+                <div class="cast-info" id="castInfo"></div>
+                
+                <div class="stat-grid" id="stats"></div>
+                
+                <div class="likers-section" id="likersSection"></div>
             </div>
         </div>
     </div>
@@ -265,7 +297,6 @@
         import { sdk } from 'https://esm.sh/@farcaster/frame-sdk@0.0.24';
 
         let context = null;
-        let userData = null;
 
         // Initialize Mini App
         async function initialize() {
@@ -275,11 +306,6 @@
                 // Get context from Farcaster
                 context = await sdk.context;
                 console.log('Context:', context);
-
-                if (context?.user) {
-                    userData = context.user;
-                    displayUserInfo(userData);
-                }
 
                 // Signal that app is ready
                 await sdk.actions.ready();
@@ -291,45 +317,37 @@
             }
         }
 
-        // Display user info
-        function displayUserInfo(user) {
-            document.getElementById('userCard').style.display = 'block';
-            document.getElementById('userName').textContent = user.displayName || 'Anonymous';
-            document.getElementById('userBio').textContent = `@${user.username || 'user'} • FID: ${user.fid}`;
-            
-            // Set avatar if available
-            if (user.pfpUrl) {
-                const avatarDiv = document.getElementById('userAvatar');
-                avatarDiv.innerHTML = `<img src="${user.pfpUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
-            }
-        }
-
-        // Analyze connections
-        window.analyzeConnections = async function() {
-            if (!userData) {
-                showError('Data user tidak tersedia');
-                return;
-            }
-
+        // Analyze cast
+        window.analyzeCast = async function() {
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
 
             try {
-                // Call API to analyze connections
+                // Get cast hash from context
+                const castHash = context?.cast?.hash;
+                
+                if (!castHash) {
+                    throw new Error('Cast hash tidak ditemukan. Pastikan Mini App dijalankan dari reply cast.');
+                }
+
+                console.log('Analyzing cast:', castHash);
+
+                // Call API to analyze cast
                 const response = await fetch('/api/analyze', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        fid: userData.fid,
+                        castHash: castHash,
                     }),
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to analyze connections');
+                    const error = await response.json();
+                    throw new Error(error.message || 'Failed to analyze cast');
                 }
 
                 const data = await response.json();
@@ -337,7 +355,7 @@
 
             } catch (error) {
                 console.error('Analysis error:', error);
-                showError('Gagal menganalisis koneksi. Silakan coba lagi.');
+                showError(error.message || 'Gagal menganalisis cast. Silakan coba lagi.');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalHTML;
@@ -346,86 +364,72 @@
 
         // Display results
         function displayResults(data) {
-            const resultsDiv = document.getElementById('results');
-            const contentDiv = document.getElementById('resultsContent');
-            
-            let html = '';
+            // Cast info
+            const castInfoHTML = `
+                <div class="cast-author">
+                    <img src="${data.cast.author.pfp_url}" alt="Avatar" class="cast-avatar">
+                    <div>
+                        <div style="font-weight: 600;">${data.cast.author.display_name}</div>
+                        <div style="opacity: 0.7; font-size: 0.9em;">@${data.cast.author.username}</div>
+                    </div>
+                </div>
+                <div class="cast-text">
+                    ${data.cast.text || '<em>Cast tanpa teks</em>'}
+                </div>
+            `;
+            document.getElementById('castInfo').innerHTML = castInfoHTML;
 
-            // Mutual following
-            if (data.mutualFollowing && data.mutualFollowing.length > 0) {
-                html += `
-                    <div class="connection-item">
-                        <div class="connection-icon">🤝</div>
-                        <div class="connection-text">
-                            <h3>Following Bersama</h3>
-                            <p>${data.mutualFollowing.length} akun yang Anda berdua ikuti</p>
-                            <div class="user-list">
-                                ${data.mutualFollowing.slice(0, 10).map(user => 
-                                    `<span class="user-tag">@${user.username}</span>`
-                                ).join('')}
-                                ${data.mutualFollowing.length > 10 ? 
-                                    `<span class="user-tag">+${data.mutualFollowing.length - 10} lainnya</span>` 
-                                : ''}
+            // Stats
+            const statsHTML = `
+                <div class="stat-item">
+                    <div class="stat-number">❤️ ${data.stats.likes}</div>
+                    <div class="stat-label">Likes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">🔄 ${data.stats.recasts}</div>
+                    <div class="stat-label">Recasts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">💬 ${data.stats.replies}</div>
+                    <div class="stat-label">Replies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">👀 ${data.stats.watches || 0}</div>
+                    <div class="stat-label">Views</div>
+                </div>
+            `;
+            document.getElementById('stats').innerHTML = statsHTML;
+
+            // Top likers
+            if (data.topLikers && data.topLikers.length > 0) {
+                const likersHTML = `
+                    <h3>🌟 Top Likers</h3>
+                    <div class="likers-grid">
+                        ${data.topLikers.map(liker => `
+                            <div class="liker-card">
+                                <img src="${liker.pfp_url}" alt="${liker.display_name}" class="liker-avatar">
+                                <div class="liker-name">${liker.display_name}</div>
+                                <div class="liker-username">@${liker.username}</div>
                             </div>
-                        </div>
+                        `).join('')}
                     </div>
                 `;
+                document.getElementById('likersSection').innerHTML = likersHTML;
             }
 
-            // Followers count
-            if (data.followersCount !== undefined) {
-                html += `
-                    <div class="connection-item">
-                        <div class="connection-icon">👥</div>
-                        <div class="connection-text">
-                            <h3>Total Followers</h3>
-                            <p>${data.followersCount.toLocaleString()} pengikut</p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // Following count
-            if (data.followingCount !== undefined) {
-                html += `
-                    <div class="connection-item">
-                        <div class="connection-icon">➕</div>
-                        <div class="connection-text">
-                            <h3>Total Following</h3>
-                            <p>${data.followingCount.toLocaleString()} akun diikuti</p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            if (html === '') {
-                html = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">🔍</div>
-                        <h3>Belum Ada Data</h3>
-                        <p>Koneksi Anda sedang dianalisis...</p>
-                    </div>
-                `;
-            }
-
-            contentDiv.innerHTML = html;
-            resultsDiv.classList.add('show');
-
-            // Smooth scroll to results
-            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Show results
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         // Show error
         function showError(message) {
-            const userCard = document.getElementById('userCard');
-            if (userCard.style.display === 'none') {
-                userCard.style.display = 'block';
-            }
-            
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error';
             errorDiv.textContent = message;
-            userCard.appendChild(errorDiv);
+            
+            const container = document.querySelector('.card');
+            container.appendChild(errorDiv);
 
             setTimeout(() => errorDiv.remove(), 5000);
         }
