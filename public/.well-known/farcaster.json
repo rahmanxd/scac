@@ -1,4 +1,9 @@
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjI1NjY5MiwidHlwZSI6ImF1dGgiLCJrZXkiOiIweDNGMTcxMEE4RWNiZGYxMjUzNzNiNjk4YkRjNjNjM0I1M2E3NzdFOGYifQ",
+    "payload": "eyJkb21haW4iOiJzY2FjLXYzdG0udmVyY2VsLmFwcCJ9",
+    "signature": "zQUFuQnm7MSrrQPtDAVu/ZXSF8LNCuJLOPkIcA/stRkXNKJAo3qWrE9jP/7iLfwq2EXONP5Qkm+4Z4fm9lapthw="
+  },
   "frame": {
     "version": "next",
     "name": "Cast Analyzer",
