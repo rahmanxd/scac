@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📊 Cast Analyzer</title>
+    
+    <!-- Farcaster Frame Meta Tags -->
+    <meta property="fc:frame" content="vNext" />
+    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/og-image.png" />
+    <meta property="fc:frame:button:1" content="🔍 Analisis Cast" />
+    <meta property="fc:frame:button:1:action" content="link" />
+    <meta property="fc:frame:button:1:target" content="https://scac-v3tm.vercel.app" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cast Analyzer" />
+    <meta property="og:description" content="Analisis popularitas dan statistik cast di Farcaster" />
+    <meta property="og:image" content="https://scac-v3tm.vercel.app/og-image.png" />
+    <meta property="og:url" content="https://scac-v3tm.vercel.app" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cast Analyzer" />
+    <meta name="twitter:description" content="Analisis popularitas cast di Farcaster" />
+    <meta name="twitter:image" content="https://scac-v3tm.vercel.app/og-image.png" />
     <style>
         * {
             margin: 0;
@@ -260,7 +280,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Cast Analyzer</h1>
-            <p>Farcaster Cast Popularity Analysis</p>
+            <p>Analyze cast popularity on Farcaster</p>
         </div>
 
         <div class="card">
@@ -269,14 +289,14 @@
                 <ol>
                     <li>Find an interesting cast on Farcaster</li>
                     <li>Reply to the cast with the URL of this Mini App</li>
-                    <li>Click the "Analyze Cast" button that appears</li>
-                    <li>See the full stats!</li>
+                    <li>Click the "Analyze This Cast" button that appears</li>
+                    <li>View the complete statistics!</li>
                 </ol>
             </div>
 
             <button class="button" id="analyzeBtn" onclick="analyzeCast()">
                 <span>🔍</span>
-                <span>Analyze Cast</span>
+                <span>Analyze This Cast</span>
             </button>
         </div>
 
@@ -313,7 +333,7 @@
 
             } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Failed to load app. Make sure to open it from Farcaster.');
+                showError('Failed to load app. Please ensure it is opened from Farcaster.');
             }
         }
 
@@ -322,14 +342,14 @@
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<div class="loading"></div><span>Analyzing...</span>';
+            btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
 
             try {
                 // Get cast hash from context
                 const castHash = context?.cast?.hash;
                 
                 if (!castHash) {
-                    throw new Error('Cast hash not found. Make sure the Mini App is run from the reply to the cast.');
+                    throw new Error('Cast hash not found. Please ensure the Mini App is run from a cast reply.');
                 }
 
                 console.log('Analyzing cast:', castHash);
