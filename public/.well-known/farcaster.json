@@ -4,8 +4,8 @@
     "payload": "eyJkb21haW4iOiJzY2FjLXYzdG0udmVyY2VsLmFwcCJ9",
     "signature": "zQUFuQnm7MSrrQPtDAVu/ZXSF8LNCuJLOPkIcA/stRkXNKJAo3qWrE9jP/7iLfwq2EXONP5Qkm+4Z4fm9lapthw="
   },
-  "miniapp": {
-    "version": "vNext",
+   "miniapp": {
+    "version": "1.0.0",
     "name": "Cast Analyzer",
     "iconUrl": "https://scac-v3tm.vercel.app/icon.png",
     "homeUrl": "https://scac-v3tm.vercel.app",
