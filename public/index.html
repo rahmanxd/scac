@@ -7,23 +7,23 @@
     
     <!-- Farcaster Frame Meta Tags -->
     <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/api/og-image" />
-    <meta property="fc:frame:button:1" content="🔍 Analisis Cast" />
+    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/og-image.png" />
+    <meta property="fc:frame:button:1" content="🔍 Analyze Cast" />
     <meta property="fc:frame:button:1:action" content="link" />
     <meta property="fc:frame:button:1:target" content="https://scac-v3tm.vercel.app" />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Cast Analyzer" />
-    <meta property="og:description" content="Analisis popularitas dan statistik cast di Farcaster" />
-    <meta property="og:image" content="https://scac-v3tm.vercel.app/api/og-image" />
+    <meta property="og:description" content="Analyze the popularity and statistics of casts on Farcaster" />
+    <meta property="og:image" content="https://scac-v3tm.vercel.app/og-image.png" />
     <meta property="og:url" content="https://scac-v3tm.vercel.app" />
     <meta property="og:type" content="website" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cast Analyzer" />
-    <meta name="twitter:description" content="Analisis popularitas cast di Farcaster" />
-    <meta name="twitter:image" content="https://scac-v3tm.vercel.app/api/og-image" />
+    <meta name="twitter:description" content="Analyze the popularity and statistics of casts on Farcaster" />
+    <meta name="twitter:image" content="https://scac-v3tm.vercel.app/og-image.png" />
     <style>
         * {
             margin: 0;
@@ -280,7 +280,7 @@
     <div class="container">
         <div class="header">
             <h1>📊 Cast Analyzer</h1>
-            <p>Analyze cast popularity on Farcaster</p>
+            <p>Analisis popularitas cast di Farcaster</p>
         </div>
 
         <div class="card">
@@ -288,21 +288,21 @@
                 <h3>💡 How to Use</h3>
                 <ol>
                     <li>Find an interesting cast on Farcaster</li>
-                    <li>Reply to the cast with the URL of this Mini App</li>
-                    <li>Click the "Analyze This Cast" button that appears</li>
-                    <li>View the complete statistics!</li>
+                    <li>Reply to that cast with this Mini App URL</li>
+                    <li>Click the "Analyze Cast" button that appears</li>
+                    <li>View the full statistics!</li>
                 </ol>
             </div>
 
             <button class="button" id="analyzeBtn" onclick="analyzeCast()">
                 <span>🔍</span>
-                <span>Analyze This Cast</span>
+                <span>Analyze this cast.</span>
             </button>
         </div>
 
         <div class="results" id="results">
             <div class="card">
-                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Analysis Results</h2>
+                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Analyze Results</h2>
                 
                 <div class="cast-info" id="castInfo"></div>
                 
@@ -333,7 +333,7 @@
 
             } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Failed to load app. Please ensure it is opened from Farcaster.');
+                showError('Failed to load the app. Make sure it is opened from Farcaster.');
             }
         }
 
@@ -342,14 +342,14 @@
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
+            btn.innerHTML = '<div class="loading"></div><span>Analyzing...</span>';
 
             try {
                 // Get cast hash from context
                 const castHash = context?.cast?.hash;
                 
                 if (!castHash) {
-                    throw new Error('Cast hash not found. Please ensure the Mini App is run from a cast reply.');
+                    throw new Error('Cast hash not found. Make sure the Mini App is opened from a reply to the cast.');
                 }
 
                 console.log('Analyzing cast:', castHash);
