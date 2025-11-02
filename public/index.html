@@ -5,26 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📊 Cast Analyzer</title>
     
-    <!-- Farcaster Mini App Meta Tags -->
-    <meta property="fc:frame" content="vNext" />
+    <meta property="fc:miniapp:name" content="Cast Analyzer" />
     <meta property="fc:miniapp:image" content="https://scac-v3tm.vercel.app/api/og-image" />
     <meta property="fc:miniapp:button:1" content="Analyze Cast" />
     <meta property="fc:miniapp:button:1:action" content="link" />
     <meta property="fc:miniapp:button:1:target" content="https://scac-v3tm.vercel.app" />
 
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Cast Analyzer" />
-    <meta property="og:description" content="Analisis popularitas dan statistik cast di Farcaster" />
+    <meta property="og:description" content="Analyze cast popularity and stats on Farcaster" />
     <meta property="og:image" content="https://scac-v3tm.vercel.app/api/og-image" />
     <meta property="og:url" content="https://scac-v3tm.vercel.app" />
     <meta property="og:type" content="website" />
     
-    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cast Analyzer" />
-    <meta name="twitter:description" content="Analisis popularitas cast di Farcaster" />
+    <meta name="twitter:description" content="Analyze cast popularity and stats on Farcaster" />
     <meta name="twitter:image" content="https://scac-v3tm.vercel.app/api/og-image" />
+    
     <style>
+        /* [SEMUA CSS ANDA TETAP SAMA, SUDAH BAGUS] */
         * {
             margin: 0;
             padding: 0;
@@ -289,15 +288,17 @@
                 <ol>
                     <li>Find an interesting cast on Farcaster</li>
                     <li>Reply to that cast with this Mini App URL</li>
-                    <li>Click the "Analyze Cast" button that appears</li>
+                    <li>Click the "Analyze This Cast" button that appears</li>
                     <li>View the complete statistics!</li>
                 </ol>
             </div>
 
-            <button class="button" id="analyzeBtn" onclick="analyzeCast()">
+            <button class="button" id="analyzeBtn" onclick="analyzeCast()" style="display: none;">
                 <span>🔍</span>
                 <span>Analyze This Cast</span>
             </button>
+
+            <div id="initErrorContainer"></div>
         </div>
 
         <div class="results" id="results">
@@ -314,12 +315,18 @@
     </div>
 
     <script type="module">
-        import { sdk } from 'https://esm.sh/@farcaster/frame-sdk@0.0.24';
+        // =======================================================
+        // FIX 2: Menggunakan SDK MINI APP yang BENAR
+        // =======================================================
+        import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
 
         let context = null;
 
         // Initialize Mini App
         async function initialize() {
+            const btn = document.getElementById('analyzeBtn');
+            const errContainer = document.getElementById('initErrorContainer');
+
             try {
                 console.log('Initializing Farcaster SDK...');
                 
@@ -331,9 +338,17 @@
                 await sdk.actions.ready();
                 console.log('SDK ready!');
 
+                // Periksa apakah 'castHash' ada SETELAH 'ready' dipanggil
+                if (!context?.cast?.hash) {
+                    throw new Error('Cast hash not found. Make sure the Mini App is launched from a cast reply.');
+                }
+
+                // Jika berhasil, tampilkan tombol
+                btn.style.display = 'flex';
+
             } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Failed to load application. Make sure it is opened from Farcaster.');
+                showError(error.message || 'Failed to load application. Make sure it is opened from Farcaster.', errContainer);
             }
         }
 
@@ -342,10 +357,11 @@
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
+            
+            // FIX 3: Menerjemahkan teks loading
+            btn.innerHTML = '<div class="loading"></div><span>Analyzing...</span>';
 
             try {
-                // Get cast hash from context
                 const castHash = context?.cast?.hash;
                 
                 if (!castHash) {
@@ -366,8 +382,8 @@
                 });
 
                 if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.message || 'Failed to analyze cast');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to analyze cast');
                 }
 
                 const data = await response.json();
@@ -394,7 +410,7 @@
                     </div>
                 </div>
                 <div class="cast-text">
-                    ${data.cast.text || '<em>Cast without text</em>'}
+                    ${data.cast.text || '<em>Cast without text.</em>'}
                 </div>
             `;
             document.getElementById('castInfo').innerHTML = castInfoHTML;
@@ -443,12 +459,13 @@
         }
 
         // Show error
-        function showError(message) {
+        function showError(message, targetElement = null) {
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error';
             errorDiv.textContent = message;
             
-            const container = document.querySelector('.card');
+            // Default to the main card if no target is specified
+            const container = targetElement || document.querySelector('.card');
             container.appendChild(errorDiv);
 
             setTimeout(() => errorDiv.remove(), 5000);
