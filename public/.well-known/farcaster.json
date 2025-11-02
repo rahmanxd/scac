@@ -4,18 +4,18 @@
     "payload": "eyJkb21haW4iOiJzY2FjLXYzdG0udmVyY2VsLmFwcCJ9",
     "signature": "zQUFuQnm7MSrrQPtDAVu/ZXSF8LNCuJLOPkIcA/stRkXNKJAo3qWrE9jP/7iLfwq2EXONP5Qkm+4Z4fm9lapthw="
   },
-  "frame": {
-    "version": "next",
+  "miniapp": {
+    "version": "1",
     "name": "Cast Analyzer",
-    "iconUrl": "https://scac-v3tm.vercel.app/icon.png",
+    "iconUrl": "https://scac-v3tm.vercel.app/api/icon",
     "homeUrl": "https://scac-v3tm.vercel.app",
-    "imageUrl": "https://scac-v3tm.vercel.app/og-image.png",
+    "imageUrl": "https://scac-v3tm.vercel.app/api/og-image",
     "buttonTitle": "Analyze Cast",
-    "splashImageUrl": "https://scac-v3tm.vercel.app/splash.png",
+    "splashImageUrl": "https://scac-v3tm.vercel.app/api/splash",
     "splashBackgroundColor": "#667eea",
-    "description": "Analysis of cast popularity and statistics on Farcaster - likes, recasts, replies, and top likers",
-    "ogTitle": "Cast Analyzer",
-    "ogDescription": "Analysis of cast popularity on Farcaster",
-    "ogImageUrl": "https://scac-v3tm.vercel.app/og-image.png"
+    "subtitle": "Cast analytics tool",
+    "description": "Analyze cast popularity with likes, recasts, replies, and discover top likers on Farcaster",
+    "primaryCategory": "social",
+    "tags": ["analytics", "cast", "social", "stats", "farcaster"]
   }
 }

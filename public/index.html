@@ -6,11 +6,11 @@
     <title>📊 Cast Analyzer</title>
     
     <!-- Farcaster Mini App Meta Tags -->
-    <meta property="fc:miniapp" content="next" />
-    <meta property="fc:miniapp:name" content="Cast Analyzer" />
-    <meta property="fc:miniapp:image" content="https://scac-v3tm.vercel.app/og-image.png" />
-    <meta property="fc:miniapp:button:1" content="🔍 Analisis Cast" />
-    <meta property="fc:miniapp:button:1:action" content="launch" />
+    <meta property="fc:frame" content="vNext" />
+    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/api/og-image" />
+    <meta property="fc:frame:button:1" content="Analyze Cast" />
+    <meta property="fc:frame:button:1:action" content="link" />
+    <meta property="fc:frame:button:1:target" content="https://scac-v3tm.vercel.app" />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Cast Analyzer" />
@@ -296,13 +296,13 @@
 
             <button class="button" id="analyzeBtn" onclick="analyzeCast()">
                 <span>🔍</span>
-                <span>Analyze this cast.</span>
+                <span>Analyze This Cast</span>
             </button>
         </div>
 
         <div class="results" id="results">
             <div class="card">
-                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Hasil Analisis</h2>
+                <h2 style="margin-bottom: 20px; font-size: 1.5em;">📈 Analysis Results</h2>
                 
                 <div class="cast-info" id="castInfo"></div>
                 
@@ -333,7 +333,7 @@
 
             } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Failed to load the app. Please make sure it is opened from Farcaster.');
+                showError('Failed to load application. Make sure it is opened from Farcaster.');
             }
         }
 
@@ -349,7 +349,7 @@
                 const castHash = context?.cast?.hash;
                 
                 if (!castHash) {
-                    throw new Error('Cast hash not found. Please make sure to run the Mini App from a cast reply.');
+                    throw new Error('Cast hash not found. Make sure the Mini App is launched from a cast reply.');
                 }
 
                 console.log('Analyzing cast:', castHash);
@@ -394,7 +394,7 @@
                     </div>
                 </div>
                 <div class="cast-text">
-                    ${data.cast.text || '<em>Cast without text.</em>'}
+                    ${data.cast.text || '<em>Cast without text</em>'}
                 </div>
             `;
             document.getElementById('castInfo').innerHTML = castInfoHTML;
