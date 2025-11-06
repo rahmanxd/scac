@@ -2,28 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📊 Cast Analyzer</title>
-    
-    <!-- Farcaster Mini App Meta Tags -->
-    <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/api/og-image" />
-    <meta property="fc:frame:button:1" content="Analyze Cast" />
-    <meta property="fc:frame:button:1:action" content="link" />
-    <meta property="fc:frame:button:1:target" content="https://scac-v3tm.vercel.app" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#667eea">
+    <title>Cast Analyzer - Analyze Cast Popularity</title>
+    <meta name="description" content="Analyze cast popularity with likes, recasts, replies, and discover top likers on Farcaster">
+
+    <!-- Farcaster Frame Meta Tags -->
+    <meta property="fc:frame" content="vNext">
+    <meta property="fc:frame:image" content="https://scac-v3tm.vercel.app/api/og-image">
+    <meta property="fc:frame:button:1" content="Analyze Cast">
+    <meta property="fc:frame:button:1:action" content="link">
+    <meta property="fc:frame:button:1:target" content="https://scac-v3tm.vercel.app">
+
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Cast Analyzer" />
-    <meta property="og:description" content="Analisis popularitas dan statistik cast di Farcaster" />
-    <meta property="og:image" content="https://scac-v3tm.vercel.app/og-image.png" />
-    <meta property="og:url" content="https://scac-v3tm.vercel.app" />
-    <meta property="og:type" content="website" />
-    
+    <meta property="og:title" content="Cast Analyzer - Analyze Cast Popularity">
+    <meta property="og:description" content="Analyze cast popularity with likes, recasts, replies, and discover top likers on Farcaster">
+    <meta property="og:image" content="https://scac-v3tm.vercel.app/api/og-image">
+    <meta property="og:type" content="website">
+
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cast Analyzer" />
-    <meta name="twitter:description" content="Analisis popularitas cast di Farcaster" />
-    <meta name="twitter:image" content="https://scac-v3tm.vercel.app/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cast Analyzer - Analyze Cast Popularity">
+    <meta name="twitter:description" content="Analyze cast popularity on Farcaster">
+    <meta name="twitter:image" content="https://scac-v3tm.vercel.app/api/og-image">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    
     <style>
         * {
             margin: 0;
@@ -38,6 +45,13 @@
             display: flex;
             flex-direction: column;
             color: white;
+        }
+
+        @supports(padding: max(0px)) {
+            body {
+                padding-left: min(0vmin, env(safe-area-inset-left));
+                padding-right: min(0vmin, env(safe-area-inset-right));
+            }
         }
 
         .container {
@@ -342,7 +356,7 @@
             const btn = document.getElementById('analyzeBtn');
             const originalHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<div class="loading"></div><span>Menganalisis...</span>';
+            btn.innerHTML = '<div class="loading"></div><span>Analyzing...</span>';
 
             try {
                 // Get cast hash from context
